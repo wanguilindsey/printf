@@ -1,6 +1,6 @@
 #include "main.h"
 
-void print_buffer(char buffer[], int *buff_ind);
+void prt_buffer(char buffer[], int *buff_indx);
 
 /**
  * _printf - Printf function
@@ -9,8 +9,8 @@ void print_buffer(char buffer[], int *buff_ind);
  */
 int _printf(const char *format, ...)
 {
-	int i, printed = 0, printed_chars = 0;
-	int flags, width, precision, size, buff_ind = 0;
+	int j, prints = 0, prints_chars = 0;
+	int flags, width, precision, size, buff_indx = 0;
 	va_list list;
 	char buffer[BUFF_SIZE];
 
@@ -18,45 +18,46 @@ int _printf(const char *format, ...)
 		return (-1);
 	va_start(list, format);
 
-	for (i = 0; format && format[i] != '\0'; i++)
+	for (i = 0; format && format[j] != '\0'; j++)
 	{
-		if (format[i] != '%')
+		if (format[j] != '%')
 		{
-			buffer[buff_ind++] = format[i];
-			if (buff_ind == BUFF_SIZE)
-				print_buffer(buffer, &buff_ind);
-			printed_chars++;
+			buffer[buff_indx++] = format[j];
+			if (buff_indx == BUFF_SIZE)
+				print_buffer(buffer, &buff_indx);
+			prints_chars++;
 		}
 		else
 		{
-			print_buffer(buffer, &buff_ind);
-			flags = get_flags(format, &i);
-			width = get_width(format, &i, list);
-			precision = get_precision(format, &i, list);
-			size = get_size(format, &i);
-			++i;
-			printed = handle_print(format, &i, list, buffer, flags, width, precision, size);
-			if (printed == -1)
+			print_buffer(buffer, &buff_indx);
+			flags = get_flags(format, &j);
+			width = get_width(format, &j, list);
+			precision = get_precision(format, &j, list);
+			size = get_size(format, &j);
+			++j;
+			prints = manage_print(format, &j, list,
+			buffer, flags, width, precision, size);
+			if (prints == -1)
 				return (-1);
-			printed_chars += printed;
+			prints_chars += prints;
 		}
 	}
-	print_buffer(buffer, &buff_ind);
+	print_buffer(buffer, &buff_indx);
 
 	va_end(list);
 
-	return (printed_chars);
+	return (prints_chars);
 }
 
 /**
- * print_buffer - Prints the contents of the buffer
+ * prt_buffer - Prints the contents of the buffer
  * @buffer: Array of chars
- * @buff_ind: Index at which to add next char and  represents the length.
+ * @buff_indx: Index at which to add next char and  represents the length.
  */
-void print_buffer(char buffer[], int *buff_ind)
+void prt_buffer(char buffer[], int *buff_indx)
 {
-	if (*buff_ind > 0)
-		write(1, &buffer[0], *buff_ind);
+	if (*buff_indx > 0)
+		write(1, &buffer[0], *buff_indx);
 
-	*buff_ind = 0;
+	*buff_indx = 0;
 }

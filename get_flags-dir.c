@@ -8,15 +8,15 @@
  */
 int get_flags(const char *format, int *j)
 {
-	int k, m;
+	int k, l;
 	int flags = 0;
 	const char FLAGS_CH[] = {'-', '+', '0', '#', ' ', '\0'};
 	const int FLAGS_ARR[] = {FS_MINUS, FS_PLUS, FS_ZERO, FS_HASH, FS_SPACE, 0};
 
-	for (m = *j + 1; format[m] != '\0'; m++)
+	for (l = *j + 1; format[l] != '\0'; l++)
 	{
 		for (k = 0; FLAGS_CH[k] != '\0'; k++)
-			if (format[m] == FLAGS_CH[k])
+			if (format[l] == FLAGS_CH[k])
 			{
 				flags |= FLAGS_ARR[k];
 				break;
@@ -26,7 +26,7 @@ int get_flags(const char *format, int *j)
 			break;
 	}
 
-	*j = m - 1;
+	*j = l - 1;
 
 	return (flags);
 }
