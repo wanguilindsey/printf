@@ -63,16 +63,16 @@ int prt_octal(va_list types, char buffer[],
 
 	while (num > 0)
 	{
-		buffer[i--] = (num % 8) + '0';
+		buffer[j--] = (num % 8) + '0';
 		num /= 8;
 	}
 
 	if (flags & FS_HASH && init_num != 0)
-		buffer[i--] = '0';
+		buffer[j--] = '0';
 
-	i++;
+	j++;
 
-	return (wrt_unsigned(0, i, buffer, flags, width, precision, size));
+	return (wrt_unsigned(0, j, buffer, flags, width, precision, size));
 }
 
 /**
@@ -138,16 +138,17 @@ int prt_hexa(va_list types, char map_to[], char buffer[],
 
 	while (num > 0)
 	{
-		buffer[i--] = map_to[num % 16];
+		buffer[j--] = map_to[num % 16];
 		num /= 16;
 	}
 
 	if (flags & FS_HASH && init_num != 0)
 	{
-		buffer[i--] = flag_hi;
-		buffer[i--] = '0';
+		buffer[j--] = flag_hi;
+		buffer[j--] = '0';
 	}
 
-	i++;
+	j++;
 
-	return (wrt_unsignd(0, i, buffer, flags, width, precision, size))
+	return (wrt_unsigned(0, j, buffer, flags, width, precision, size));
+}

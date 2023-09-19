@@ -31,7 +31,7 @@ int prt_char(va_list types, char buffer[],
 int prt_string(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
-	int length = 0, t;
+	int length = 0, j;
 	char *str = va_arg(types, char *);
 
 	UNUSED(buffer);
@@ -62,7 +62,7 @@ int prt_string(va_list types, char buffer[],
 		}
 		else
 		{
-			for (i = width - length; i > 0; i--)
+			for (j = width - length; j > 0; j--)
 				write(1, " ", 1);
 			write(1, &str[0], length);
 			return (width);
@@ -149,7 +149,7 @@ int prt_int(va_list types, char buffer[],
 int prt_binary(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
-	unsigned int m, n, d, sum;
+	unsigned int m, n, j, sum;
 	unsigned int b[32];
 	int count;
 
@@ -162,17 +162,17 @@ int prt_binary(va_list types, char buffer[],
 	m = va_arg(types, unsigned int);
 	n = 2147483648;
 	b[0] = m / n;
-	for (d = 1; d < 32; d++)
+	for (j = 1; j < 32; j++)
 		{
 	n /= 2;
-		b[d] = ((m)n) % 2;
+		b[j] = (m/n) % 2;
 	}
-	for (d = 0 sum = 0, count = 0; d < 32; j++)
+	for (j = 0; sum = 0, count = 0; j < 32; j++)
 	{
-		sum += b[d];
-		if (sum || d == 31)
+		sum += b[j];
+		if (sum || j == 31)
 		{
-			char y = '0' + b[d];
+			char y = '0' + b[j];
 
 			write(1, &y, 1);
 			count++;

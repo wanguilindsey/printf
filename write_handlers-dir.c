@@ -35,12 +35,12 @@ int manage_write_char(char d, char buffer[],
 
 		if (flags & FS_MINUS)
 			return (write(1, &buffer[0], 1) +
-					wrt(1, &buffer[BUFF_SIZE - j - 1], width - 1));
+					write(1, &buffer[BUFF_SIZE - j - 1], width - 1));
 		else
-			return (wrt(1, &buffer[BUFF_SIZE - j - 1], width - 1) +
-					wrt(1, &buffer[0], 1));
+			return (write(1, &buffer[BUFF_SIZE - j - 1], width - 1) +
+					write(1, &buffer[0], 1));
 	}
-
+}
 	return (wrt(1, &buffer[0], 1));
 /**
  * write_number - Prints a string
@@ -54,7 +54,7 @@ int manage_write_char(char d, char buffer[],
  *
  * Return: Number of chars printed.
  */
-int write_number(int is_ngtv, int indx, char buffer[],
+int wrt_num(int is_ngtv, int indx, char buffer[],
 	int flags, int width, int precision, int size)
 {
 	int length = BUFF_SIZE - indx - 1;
