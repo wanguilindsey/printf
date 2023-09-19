@@ -18,7 +18,7 @@ int _printf(const char *format, ...)
 		return (-1);
 	va_start(list, format);
 
-	for (i = 0; format && format[j] != '\0'; j++)
+	for (j = 0; format && format[j] != '\0'; j++)
 	{
 		if (format[j] != '%')
 		{
@@ -42,7 +42,7 @@ int _printf(const char *format, ...)
 			prints_chars += prints;
 		}
 	}
-	print_buffer(buffer, &buff_indx);
+	prt_buffer(buffer, &buff_indx);
 
 	va_end(list);
 

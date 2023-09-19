@@ -45,7 +45,7 @@ int prt_pointer(va_list types, char buffer[],
 		xtra_d = ' ', length++;
 	indx++;
 
-	return (wrt_pointer(buffer, ind, length,
+	return (wrt_pointer(buffer, indx, length,
 		width, flags, pad, xtra_d, pad_start));
 }
 

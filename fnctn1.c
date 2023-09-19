@@ -1,4 +1,4 @@
-#include "main.hi"
+#include "main.h"
 
 /**
  * prt_unsigned - Prints an unsigned number
@@ -16,22 +16,22 @@ int prt_unsigned(va_list types, char buffer[],
 	int j = BUFF_SIZE - 2;
 	unsigned long int num = va_arg(types, unsigned long int);
 
-	num = cnvrt_size_unsignd(num, size);
+	num = cnvrt_size_unsigned(num, size);
 
 	if (num == 0)
-		buffer[i--] = '0';
+		buffer[j--] = '0';
 
 	buffer[BUFF_SIZE - 1] = '\0';
 
 	while (num > 0)
 	{
-		buffer[i--] = (num % 10) + '0';
+		buffer[j--] = (num % 10) + '0';
 		num /= 10;
 	}
 
-	i++;
+	j++;
 
-	return (wrt_unsignd(0, i, buffer, flags, width, precision, size));
+	return (wrt_unsigned(0, j, buffer, flags, width, precision, size));
 }
 
 /**
