@@ -16,7 +16,7 @@ int prt_unsigned(va_list types, char buffer[],
 	int j = BUFF_SIZE - 2;
 	unsigned long int num = va_arg(types, unsigned long int);
 
-	num = cnvrt_size_unsigned(num, size);
+	num = cnvrt_size_unsignd(num, size);
 
 	if (num == 0)
 		buffer[j--] = '0';
@@ -57,7 +57,7 @@ int prt_octal(va_list types, char buffer[],
 	num = cnvrt_size_unsignd(num, size);
 
 	if (num == 0)
-		buffer[i--] = '0';
+		buffer[j--] = '0';
 
 	buffer[BUFF_SIZE - 1] = '\0';
 
@@ -72,7 +72,7 @@ int prt_octal(va_list types, char buffer[],
 
 	i++;
 
-	return (wrt_unsignd(0, i, buffer, flags, width, precision, size));
+	return (wrt_unsigned(0, i, buffer, flags, width, precision, size));
 }
 
 /**
@@ -132,7 +132,7 @@ int prt_hexa(va_list types, char map_to[], char buffer[],
 	num = cnvrt_size_unsignd(num, size);
 
 	if (num == 0)
-		buffer[i--] = '0';
+		buffer[j--] = '0';
 
 	buffer[BUFF_SIZE - 1] = '\0';
 
@@ -150,5 +150,4 @@ int prt_hexa(va_list types, char map_to[], char buffer[],
 
 	i++;
 
-	return (wrt_unsignd(0, i, buffer, flags, width, precision, size));
-}
+	return (wrt_unsignd(0, i, buffer, flags, width, precision, size))
