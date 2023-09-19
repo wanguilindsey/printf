@@ -92,7 +92,7 @@ int write_num(int indx, char buffer[],
 	int j, pad_start = 1;
 
 	if (prec == 0 && indx == BUFF_SIZE - 2 && buffer[indx] == '0' && width == 0)
-		return (0)
+		return (0);
 	if (prec == 0 && indx == BUFF_SIZE - 2 && buffer[indx] == '0')
 		buffer[indx] = pad = ' ';
 	if (prec > 0 && prec < length)
