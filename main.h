@@ -82,6 +82,6 @@ int appnd_hex_code(char, char[], int);
 int is_dgt(char);
 
 long int cnvrt_size_number(long int num, int size);
-long int cnvrt_size_unsigned(unsigned long int num, int size);
+long int cnvrt_size_unsignd(unsigned long int num, int size);
 
 #endif
