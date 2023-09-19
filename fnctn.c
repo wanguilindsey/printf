@@ -163,11 +163,11 @@ int prt_binary(va_list types, char buffer[],
 	n = 2147483648;
 	b[0] = m / n;
 	for (j = 1; j < 32; j++)
-		{
-	n /= 2;
+	{
+		n /= 2;
 		b[j] = (m/n) % 2;
 	}
-	for (j = 0; sum = 0, count = 0; j < 32; j++)
+	for (j = 0, sum = 0, count = 0; j < 32; j++)
 	{
 		sum += b[j];
 		if (sum || j == 31)

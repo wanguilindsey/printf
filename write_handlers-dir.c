@@ -41,9 +41,9 @@ int manage_write_char(char d, char buffer[],
 					write(1, &buffer[0], 1));
 	}
 }
-	return (wrt(1, &buffer[0], 1));
+	return (write(1, &buffer[0], 1));
 /**
- * write_number - Prints a string
+ * wrt_num - Prints a string
  * @is_ngtv: Lista of arguments
  * @indx: char types.
  * @buffer: Buffer array to handle print
@@ -247,4 +247,3 @@ int write_pointer(char buffer[], int indx, int length,
 		buffer[--indx] = xtra_c;
 	return (wrt(1, &buffer[indx], BUFF_SIZE - indx - 1));
 }
-
