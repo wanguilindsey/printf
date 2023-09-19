@@ -165,7 +165,7 @@ int prt_binary(va_list types, char buffer[],
 	for (j = 1; j < 32; j++)
 	{
 		n /= 2;
-		b[j] = (m/n) % 2;
+		b[j] = (m / n) % 2;
 	}
 	for (j = 0, sum = 0, count = 0; j < 32; j++)
 	{

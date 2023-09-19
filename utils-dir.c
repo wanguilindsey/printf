@@ -1,9 +1,8 @@
 #include "main.h"
 
-/**0
+/**
  * is_prtbl - Evaluates if a char is printable
- * @c: Char to be evaluated.
- *
+ * @d: Char to be evaluated.
  * Return: 1 if c is printable, 0 otherwise
  */
 int is_prtbl(char d)
@@ -18,7 +17,7 @@ int is_prtbl(char d)
  * appnd_hexa_code - Append ascci in hexadecimal code to buffer
  * @buffer: Array of chars.
  * @j: Index at which to start appending.
- * lode: ASSCI CODE.
+ * @lode: ASSCI CODE.
  * Return: Always 3
  */
 int appnd_hexa_code(char lode, char buffer[], int j)
