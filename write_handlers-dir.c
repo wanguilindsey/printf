@@ -1,6 +1,5 @@
 #include "main.h"
 
-
 /**
  * manage_write_char - Prints a string
  * @d: char types.
@@ -9,12 +8,11 @@
  * @width: get width.
  * @precision: precision specifier
  * @size: Size specifier
- *
  * Return: Number of chars printed.
  */
 int manage_write_char(char d, char buffer[],
 	int flags, int width, int precision, int size)
-{ 
+{
 	int j = 0;
 	char pad = ' ';
 
@@ -40,10 +38,11 @@ int manage_write_char(char d, char buffer[],
 			return (write(1, &buffer[BUFF_SIZE - j - 1], width - 1) +
 					write(1, &buffer[0], 1));
 	}
-}
+
 	return (write(1, &buffer[0], 1));
+}
 /**
- * wrt_num - Prints a string
+ * wrt_number - Prints a string
  * @is_ngtv: Lista of arguments
  * @indx: char types.
  * @buffer: Buffer array to handle print
@@ -51,10 +50,9 @@ int manage_write_char(char d, char buffer[],
  * @width: get width.
  * @precision: precision specifier
  * @size: Size specifier
- *
  * Return: Number of chars printed.
  */
-int wrt_num(int is_ngtv, int indx, char buffer[],
+int wrt_number(int is_ngtv, int indx, char buffer[],
 	int flags, int width, int precision, int size)
 {
 	int length = BUFF_SIZE - indx - 1;
@@ -85,7 +83,6 @@ int wrt_num(int is_ngtv, int indx, char buffer[],
  * @length: Number length
  * @pad: Pading char
  * @xtra_c: Extra char
- *
  * Return: Number of printed chars.
  */
 int write_num(int indx, char buffer[],
@@ -95,9 +92,9 @@ int write_num(int indx, char buffer[],
 	int j, pad_start = 1;
 
 	if (prec == 0 && indx == BUFF_SIZE - 2 && buffer[indx] == '0' && width == 0)
-		return (0); 
+		return (0)
 	if (prec == 0 && indx == BUFF_SIZE - 2 && buffer[indx] == '0')
-		buffer[indx] = pad = ' '; 
+		buffer[indx] = pad = ' ';
 	if (prec > 0 && prec < length)
 		pad = ' ';
 	while (prec > length)
@@ -113,25 +110,25 @@ int write_num(int indx, char buffer[],
 		{
 			if (xtra_c)
 				buffer[--indx] = xtra_c;
-			return (wrt(1, &buffer[indx], length) + wrt(1, &buffer[1], j - 1));
+			return (write(1, &buffer[indx], length) + write(1, &buffer[1], j - 1));
 		}
 		else if (!(flags & FS_MINUS) && pad == ' ')
 		{
 			if (xtra_c)
 				buffer[--indx] = xtra_c;
-			return (wrt(1, &buffer[1], j - 1) + wrt(1, &buffer[indx], length));
+			return (write(1, &buffer[1], j - 1) + write(1, &buffer[indx], length));
 		}
 		else if (!(flags & FS_MINUS) && pad == '0')
 		{
 			if (xtra_c)
 				buffer[--pad_start] = xtra_c;
-			return (wrt(1, &buffer[pad_start], j - pad_start) +
-				wrt(1, &buffer[indx], length - (1 - pad_start)));
+			return (write(1, &buffer[pad_start], j - pad_start) +
+				write(1, &buffer[indx], length - (1 - pad_start)));
 		}
 	}
 	if (xtra_c)
 		buffer[--indx] = xtra_c;
-	return (wrt(1, &buffer[indx], length));
+	return (write(1, &buffer[indx], length));
 }
 
 /**
@@ -146,11 +143,9 @@ int write_num(int indx, char buffer[],
  *
  * Return: Number of written chars.
  */
-int write_unsgnd(int is_ngtv, int indx,
-	char buffer[],
-	int flags, int width, int precision, int size)
+int wrt_unsgnd(int is_ngtv, int indx,
+	char buffer[], int flags, int width, int precision, int size)
 {
-	
 	int length = BUFF_SIZE - indx - 1, j = 0;
 	char pad = ' ';
 
@@ -158,7 +153,7 @@ int write_unsgnd(int is_ngtv, int indx,
 	UNUSED(size);
 
 	if (precision == 0 && indx == BUFF_SIZE - 2 && buffer[indx] == '0')
-		return (0); 
+		return (0);
 
 	if (precision > 0 && precision < length)
 		pad = ' ';
@@ -181,19 +176,19 @@ int write_unsgnd(int is_ngtv, int indx,
 
 		if (flags & FS_MINUS)
 		{
-			return (wrt(1, &buffer[indx], length) + wrt(1, &buffer[0], j));
+			return (write(1, &buffer[indx], length) + write(1, &buffer[0], j));
 		}
-		else 
+		else
 		{
-			return (wrt(1, &buffer[0], j) + wrt(1, &buffer[indx], length));
+			return (write(1, &buffer[0], j) + write(1, &buffer[indx], length));
 		}
 	}
 
-	return (wrt(1, &buffer[indx], length));
+	return (write(1, &buffer[indx], length));
 }
 
 /**
- * write_pointer - Write a memory address
+ * wrt_pointer - Write a memory address
  * @buffer: Arrays of chars
  * @indx: Index at which the number starts in the buffer
  * @length: Length of number
@@ -205,7 +200,7 @@ int write_unsgnd(int is_ngtv, int indx,
  *
  * Return: Number of written chars.
  */
-int write_pointer(char buffer[], int indx, int length,
+int wrt_pointer(char buffer[], int indx, int length,
 	int width, int flags, char pad, char xtra_c, int pad_start)
 {
 	int j;
@@ -221,7 +216,7 @@ int write_pointer(char buffer[], int indx, int length,
 			buffer[--indx] = '0';
 			if (xtra_c)
 				buffer[--indx] = xtra_c;
-			return (wrt(1, &buffer[indx], length) + wrt(1, &buffer[3], j - 3));
+			return (write(1, &buffer[indx], length) + write(1, &buffer[3], j - 3));
 		}
 		else if (!(flags & FS_MINUS) && pad == ' ')
 		{
@@ -229,7 +224,7 @@ int write_pointer(char buffer[], int indx, int length,
 			buffer[--indx] = '0';
 			if (xtra_c)
 				buffer[--indx] = xtra_c;
-			return (wrt(1, &buffer[3], j - 3) + wrt(1, &buffer[indx], length));
+			return (write(1, &buffer[3], j - 3) + write(1, &buffer[indx], length));
 		}
 		else if (!(flags & FS_MINUS) && pad == '0')
 		{
@@ -237,13 +232,13 @@ int write_pointer(char buffer[], int indx, int length,
 				buffer[--pad_start] = xtra_c;
 			buffer[1] = '0';
 			buffer[2] = 'x';
-			return (wrt(1, &buffer[pad_start], j - pad_start) +
-				wrt(1, &buffer[indx], length - (1 - pad_start) - 2));
+			return (write(1, &buffer[pad_start], j - pad_start) +
+				write(1, &buffer[indx], length - (1 - pad_start) - 2));
 		}
 	}
 	buffer[--indx] = 'x';
 	buffer[--indx] = '0';
 	if (xtra_c)
 		buffer[--indx] = xtra_c;
-	return (wrt(1, &buffer[indx], BUFF_SIZE - indx - 1));
+	return (write(1, &buffer[indx], BUFF_SIZE - indx - 1));
 }

@@ -75,7 +75,7 @@ int wrt_num(int indx, char bffr[], int flags, int width, int precision,
 	int length, char pad, char xtra_d);
 int wrt_pointer(char buffer[], int indx, int length,
 	int width, int flags, char pad, char xtra_d, int pad_start);
-int wrt_unsigned(int is_ngtv, int indx,
+int wrt_unsignd(int is_ngtv, int indx,
 char buffer[], int flags, int width, int precision, int size);
 int is_prtbl(char);
 int appnd_hex_code(char, char[], int);

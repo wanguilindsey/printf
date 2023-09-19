@@ -31,7 +31,7 @@ int prt_unsigned(va_list types, char buffer[],
 
 	j++;
 
-	return (wrt_unsigned(0, j, buffer, flags, width, precision, size));
+	return (wrt_unsignd(0, j, buffer, flags, width, precision, size));
 }
 
 /**
@@ -72,7 +72,7 @@ int prt_octal(va_list types, char buffer[],
 
 	j++;
 
-	return (wrt_unsigned(0, j, buffer, flags, width, precision, size));
+	return (wrt_unsignd(0, j, buffer, flags, width, precision, size));
 }
 
 /**
@@ -150,5 +150,5 @@ int prt_hexa(va_list types, char map_to[], char buffer[],
 
 	j++;
 
-	return (wrt_unsigned(0, j, buffer, flags, width, precision, size));
+	return (wrt_unsignd(0, j, buffer, flags, width, precision, size));
 }
